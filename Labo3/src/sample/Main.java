@@ -14,8 +14,9 @@ import java.util.TimerTask;
 
 
 public class Main extends Application {
+    boolean win=false;
     int pts=0;
-    int multi=1;
+    int multi=1000000;
     int auto5Sec=0;
     Label nbDePts = new Label(Integer.toString(pts));
     @Override
@@ -27,12 +28,13 @@ public class Main extends Application {
 
 
         primaryStage.setScene(
-                new Scene(root()
-                )
-        );
+                new Scene(root()));
+
+        primaryStage.setFullScreen(true);
 
         primaryStage.show();
-        primaryStage.setFullScreen(true);
+
+
     }
     public Group root(){
 
@@ -81,7 +83,11 @@ public class Main extends Application {
 
         Label l5 = new Label("1 000 000");
         up5.setTranslateY(150);
-        up5.setOnAction((event -> {if(buy(1000000)) {nbDePts.setText("WIIIIIIIINNNNNNNNNNNNN");}}));
+        up5.setOnAction((event -> {if(buy(1000000)) {nbDePts.setText("WIIIIIIIINNNNNNNNNNNNN");win=true;
+            Stage winScreen= new Stage();
+            winScreen.setScene(new Scene(new Label("Vous avez gagne!")));
+            winScreen.show();
+        }}));
 
         l1.setTranslateY(35);
         l2.setTranslateY(65);
